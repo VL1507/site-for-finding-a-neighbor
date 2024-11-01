@@ -1,0 +1,32 @@
+@media screen and (max-width: 800px) {
+
+  .user-name {
+    margin: 50px 0 35px 0;
+  }
+  
+  .about-user-container {
+    flex-wrap: wrap;
+  }
+
+  .about-user-item {
+    width: 100%;
+    margin: 15px 0;
+  }
+
+  .anket {
+    width: 100%;
+  }
+
+}
+
+@media screen and (max-width: 400px) {
+
+  .user-name {
+    text-align: left;
+  }
+
+  .create-btn {
+    width: 250px;
+  }
+
+}
