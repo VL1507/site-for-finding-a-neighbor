@@ -1,0 +1,85 @@
+/* Стилизация шапки */
+
+.header {
+  width: 100%;
+  height: var(--headerHeight);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 5px solid var(--accentColor);
+}
+
+.main {
+  width: 95%;
+  margin: 0 auto 0;
+}
+
+.user-name {
+  margin: 50px 0;
+  font-size: clamp(35px, 5vw, 80px);
+}
+
+.about-user-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.about-user-item {
+  width: 48%;
+  min-height: 450px;
+  padding: 15px;
+  border: 3px solid var(--accentColor);
+  border-radius: var(--borderRadius);
+}
+
+.about-user-title {
+  font-size: 30px;
+}
+
+.about-user-text {
+  font-size: 30px;
+  margin-top: 25px;
+}
+
+.anket-container {
+  /* border: 3px solid red; */
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.anket-title {
+  margin: 50px 0 50px 0;
+  font-size: clamp(35px, 5vw, 80px)
+}
+
+.anket {
+  width: 48%;
+  min-height: 450px;
+  padding: 15px;
+  margin: 15px 0;
+  border: 3px solid var(--accentColor);
+  border-radius: var(--borderRadius);
+  font-size: 30px;
+}
+
+.user-anket-interests-container {
+  margin: 25px 0;
+}
+
+.user-anket-about-container {
+  margin: 25px 0;
+}
+
+.create-btn {
+  width: 350px;
+  padding: 15px;
+  font-size: 30px;
+  margin: 50px 0;
+  border: 3px solid var(--accentColor);
+  border-radius: var(--borderRadius);
+  background-color: transparent;
+  color: var(--accentColor);
+  cursor: pointer;
+}
