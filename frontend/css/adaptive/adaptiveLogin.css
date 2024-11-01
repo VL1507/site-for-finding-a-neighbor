@@ -1,0 +1,25 @@
+@media screen and (max-width: 1000px) {
+  
+  .form-item {
+    width: 500px;
+  }
+
+}
+
+@media screen and (max-width: 650px) {
+  
+  .form-item {
+    width: 400px;
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+  
+  .form-item {
+    width: 250px;
+    height: 80px;
+    font-size: 25px;
+  }
+
+}

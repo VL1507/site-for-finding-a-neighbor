@@ -1,0 +1,33 @@
+@media screen and (max-width: 1000px) {
+  
+  .filter-menu.menu-open {
+    width: 75%;
+  }
+
+  @keyframes openBurgerMenu {
+    from {
+      margin-left: -75%;
+    }
+    to {
+      margin-left: 0%;
+    }
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+  
+  .filter-menu.menu-open {
+    width: 100%;
+  }
+
+  @keyframes openBurgerMenu {
+    from {
+      margin-left: -100%;
+    }
+    to {
+      margin-left: 0%;
+    }
+  }
+
+}
