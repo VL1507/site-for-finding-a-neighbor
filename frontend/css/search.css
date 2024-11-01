@@ -1,0 +1,172 @@
+/* Стилизация шапки */
+
+.header {
+  width: 100%;
+  height: var(--headerHeight);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 5px solid var(--accentColor);
+}
+
+.filter-button {
+  display: flex; /* flex - видно, none - не видно */
+  width: 40px;
+  height: 30px;
+  align-items: center;
+  position: relative;
+}
+
+.filter-button span {
+  height: 3px;
+  width: 100%;
+  display: block;
+  transform: scale(1);
+  background-color: var(--accentColor);
+}
+
+.filter-button::after, .filter-button::before {
+  height: 3px;
+  width: 100%;
+  content: '';
+  position: absolute;
+  display: block;
+  background-color: var(--accentColor);
+}
+
+.filter-button::after {
+  bottom: 0;
+}
+
+.filter-button::before {
+  top: 0;
+}
+
+.filter-menu.menu-open {
+  display: block;
+  width: 50%;
+  min-height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  background-color: var(--backgroundColor);
+  border: 5px solid var(--accentColor);
+  transition: all .5s;
+  animation: openBurgerMenu .7s 1;
+}
+
+.filter-menu.menu-closed {
+  display: none;
+}
+
+.filter-menu__closed-button {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  position: relative;
+  z-index: 900;
+  margin: 15px 0 25px 15px;
+}
+
+.filter-menu__closed-button::after, .filter-menu__closed-button::before {
+  height: 5px;
+  width: 100%;
+  content: '';
+  position: absolute;
+  display: block;
+  background-color: var(--accentColor); 
+}
+
+.filter-menu__closed-button::after {
+  transform: rotate(45deg);
+  background-color: var(--accentColor);
+}
+
+.filter-menu__closed-button::before {
+  transform: rotate(-45deg);
+  background-color: var(--accentColor);
+}
+
+.filter-container {
+  /* border: 3px solid red; */
+  font-size: clamp(20px, 3vw, 40px);
+  padding-left: 15px;
+}
+
+.filter-title {
+  margin-bottom: 30px;
+}
+
+.filter-btn {
+  min-width: 150px;
+  min-height: 50px;
+  font-size: 25px;
+  margin: 10px;
+  padding: 15px;
+  cursor: pointer;
+  border: 3px solid var(--accentColor);
+  border-radius: var(--borderRadius);
+  background-color: transparent;
+}
+
+.title {
+  font-size: clamp(35px, 5vw, 80px);
+  text-align: center;
+  margin: 25px 0;
+}
+
+.anket-card-container {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 0 auto 0;
+  /* border: 3px solid red; */
+}
+
+.anket-card {
+  width: 450px;
+  height: 75px;
+  padding: 15px;
+  margin: 25px 10px;
+  font-size: 25px;
+  cursor: pointer;
+  background-color: transparent;
+  color: var(--accentColor);
+  border: 3px solid var(--accentColor);
+  border-radius: var(--borderRadius);
+  overflow: hidden;
+  text-align: left;
+}
+
+.you-anket-card {
+  border: 3px solid var(--redColor);
+  color: var(--redColor);
+}
+
+.anket-card:focus {
+  height: auto;
+}
+
+.user-ticket {
+  margin-bottom: 25px;
+}
+
+.content-container {
+  margin: 25px 0;
+}
+
+/* Анимация */
+
+@keyframes openBurgerMenu {
+  from {
+    margin-left: -50%;
+  }
+  to {
+    margin-left: 0%;
+  }
+}
