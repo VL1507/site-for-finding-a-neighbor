@@ -31,36 +31,6 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 
-# from fastapi.staticfiles import StaticFiles
-# app.mount("/static", StaticFiles(directory="./app/static"), "static")
-
-
-# from fastapi import HTTPException
-# from starlette.exceptions import HTTPException as StarletteHTTPException
-
-
-# class SPAStaticFiles(StaticFiles):
-#     async def get_response(self, path: str, scope):
-#         try:
-#             return await super().get_response(path, scope)
-#         except (HTTPException, StarletteHTTPException) as ex:
-#             if ex.status_code == 404:
-#                 return await super().get_response("index.html", scope)
-#             else:
-#                 raise ex
-
-
-# app.mount("/", StaticFiles(directory="../frontend/public/", html=True), "frontend")
-# app.mount(
-#     "/", SPAStaticFiles(directory="../frontend/public/", html=True), name="frontend"
-# )
-# from fastapi.templating import Jinja2Templates
-# t = Jinja2Templates(directory="../frontend/public/")
-# @app.get("/")
-# def f(request: Request):
-#     return t.TemplateResponse(request=request, name="index.html")
-
-
 host = "127.0.0.1"
 port = 8000
 origins = [
