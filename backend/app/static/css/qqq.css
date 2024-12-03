@@ -1,0 +1,14 @@
+.user-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  width: 45%; /* ширина карточки */
+  display: inline-block; /* отображение в строку */
+  vertical-align: top; /* выровнять по верхнему краю */
+}
+.row {
+  display: flex; /* использовать flexbox для удобного выравнивания */
+  justify-content: space-between; /* распределяет space между карточками */
+  margin-bottom: 20px; /* отступ между строками */
+}

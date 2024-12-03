@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Создание анкеты</title>
+        <link rel="stylesheet" href="../static/css/create_profile.css" />
+    </head>
+    <body>
+        <div id="main_div">
+            <h1>Создание анкеты</h1>
+            <form id="profileForm">
+                <fieldset>
+                    <label for="name">Имя:</label>
+                    <input type="text" id="name" name="name" />
+                </fieldset>
+
+                <fieldset>
+                    <legend>Пол:</legend>
+                    <input type="radio" id="male" name="gender" value="male" />
+                    <label for="male">Мужской</label>
+
+                    <input
+                        type="radio"
+                        id="female"
+                        name="gender"
+                        value="female"
+                    />
+                    <label for="female">Женский</label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Статус:</legend>
+                    <input
+                        type="radio"
+                        id="student"
+                        name="status"
+                        value="student"
+                    />
+                    <label for="student">Студент</label>
+
+                    <input
+                        type="radio"
+                        id="teacher"
+                        name="status"
+                        value="teacher"
+                    />
+                    <label for="teacher">Преподаватель</label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Курение:</legend>
+                    <input
+                        type="radio"
+                        id="notSmoke"
+                        name="smoking"
+                        value="notSmoke"
+                    />
+                    <label for="notSmoke">Не курю</label>
+
+                    <input
+                        type="radio"
+                        id="smoke"
+                        name="smoking"
+                        value="smoke"
+                    />
+                    <label for="smoke">Курю</label>
+                    <input
+                        type="radio"
+                        id="smokingVape"
+                        name="smoking"
+                        value="smokingVape"
+                    />
+                    <label for="smokingVape">Парю</label>
+                </fieldset>
+
+                <fieldset>
+                    <label for="goingToBed">Ложусь спать:</label>
+                    <input type="text" id="goingToBed" name="go_to_bed_at" />
+                    <input type="text" id="goingToBed" name="get_up_in" />
+                </fieldset>
+
+                <button type="submit">Создать профиль</button>
+            </form>
+        </div>
+    </body>
+    <script src="../static/js/create_profile.js"></script>
+</html>
