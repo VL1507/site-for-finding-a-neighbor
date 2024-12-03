@@ -6,7 +6,7 @@ const backend_api_path = "api/v1";
 
 export const instance = axios.create({
     baseURL: `http://${backend_host}:${backend_port}/${backend_api_path}`,
-    timeout: 1000,
+    // timeout: 1000,
     // headers: {
 
     // }

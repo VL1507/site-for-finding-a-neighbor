@@ -66,9 +66,11 @@ port = 8000
 origins = [
     "http://localhost",
     "https://localhost",
+    #
     f"http://localhost:{port}",
     f"http://{host}",
     f"http://{host}:{port}",
+    #
     "http://192.168.56.1:3000",
     "http://localhost:3000",
     "http://127.0.0.1:3000/",

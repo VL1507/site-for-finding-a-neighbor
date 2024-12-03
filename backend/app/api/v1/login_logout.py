@@ -33,18 +33,17 @@ def fake_aouh(request: Request):
 
     response = RedirectResponse(f"{FRONTEND_URL}/status")
 
-    access_token = create_access_token(
-        data={"user_id": 1}, minutes=JWT_LIFE_TIME_MINUTES
-    )
-    print(access_token)
-    response.set_cookie(
-        key="user_access_token",
-        value=access_token,
-        httponly=True,
-        samesite="none",
-        secure=True,
-    )
-
+    # access_token = create_access_token(
+    #     data={"user_id": 1}, minutes=JWT_LIFE_TIME_MINUTES
+    # )
+    # print(access_token)
+    # response.set_cookie(
+    #     key="user_access_token",
+    #     value=access_token,
+    #     httponly=True,
+    #     samesite="none",
+    #     secure=True,
+    # )
     return response
 
 
