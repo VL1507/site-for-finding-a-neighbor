@@ -1,37 +1,20 @@
 from jose import JWTError
 from datetime import datetime, timezone
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, HTTPException, status
 from fastapi.responses import Response, RedirectResponse
 from fastapi.requests import Request
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
 
-from database.repositories.tgaouh import TgAouhRepository
-from database.repositories.user import UserRepository
 from database.requests import add_User, add_TgAouh, get_TgAouh, get_User
 
-from config import TEMPLATES_PATH, FRONTEND_URL
+from config import FRONTEND_URL, JWT_LIFE_TIME_MINUTES
 from utils.custom_logger import setup_logger
-from utils.get_user import get_current_user, UserDep
+from utils.get_user import UserDep
 from utils.access_token import create_access_token, decode_access_token
 
 logger = setup_logger(__name__)
 
 router = APIRouter(tags=["Авторизация"])
-templates = Jinja2Templates(directory=TEMPLATES_PATH)
-
-
-# @router.get("/status")
-# async def get_my_status(
-#     request: Request,
-#     user: UserDep,
-# ):
-#     print(user)
-#     logger.debug(user)
-#     return templates.TemplateResponse(
-#         request=request, name="status.html", context={"profile": user}
-#     )
 
 
 @router.get("/get_info")
@@ -48,11 +31,13 @@ async def get_my_status(
 @router.get("/fake_aouh")
 def fake_aouh(request: Request):
 
-    r = RedirectResponse(f"{FRONTEND_URL}/status")
+    response = RedirectResponse(f"{FRONTEND_URL}/status")
 
-    access_token = create_access_token(data={"user_id": 1}, minutes=60 * 24 * 2)
+    access_token = create_access_token(
+        data={"user_id": 1}, minutes=JWT_LIFE_TIME_MINUTES
+    )
     print(access_token)
-    r.set_cookie(
+    response.set_cookie(
         key="user_access_token",
         value=access_token,
         httponly=True,
@@ -60,7 +45,7 @@ def fake_aouh(request: Request):
         secure=True,
     )
 
-    return r
+    return response
 
 
 @router.get("/tg_aouh/{token}", summary="Авторизация через тг-бота")
@@ -103,11 +88,13 @@ async def hello_world(request: Request, token: str):
 
     print(user)
 
-    r = RedirectResponse(f"{FRONTEND_URL}/status")
+    response = RedirectResponse(f"{FRONTEND_URL}/status")
 
-    access_token = create_access_token(data={"user_id": user.id}, minutes=60 * 24 * 2)
+    access_token = create_access_token(
+        data={"user_id": user.id}, minutes=JWT_LIFE_TIME_MINUTES
+    )
     print(access_token)
-    r.set_cookie(
+    response.set_cookie(
         key="user_access_token",
         value=access_token,
         httponly=True,
@@ -115,7 +102,7 @@ async def hello_world(request: Request, token: str):
         secure=True,
     )
 
-    return r
+    return response
 
 
 @router.post("/logout", summary="Выход из аккаунта. Удаляет куки")

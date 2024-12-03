@@ -7,9 +7,9 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, status
 from fastapi.requests import Request
 from fastapi.responses import RedirectResponse
-from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.exceptions import HTTPException
+
 
 import config
 from utils.custom_logger import setup_logger, Handler
@@ -29,7 +29,37 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
-app.mount("/static", StaticFiles(directory="./app/static"), "static")
+
+
+# from fastapi.staticfiles import StaticFiles
+# app.mount("/static", StaticFiles(directory="./app/static"), "static")
+
+
+# from fastapi import HTTPException
+# from starlette.exceptions import HTTPException as StarletteHTTPException
+
+
+# class SPAStaticFiles(StaticFiles):
+#     async def get_response(self, path: str, scope):
+#         try:
+#             return await super().get_response(path, scope)
+#         except (HTTPException, StarletteHTTPException) as ex:
+#             if ex.status_code == 404:
+#                 return await super().get_response("index.html", scope)
+#             else:
+#                 raise ex
+
+
+# app.mount("/", StaticFiles(directory="../frontend/public/", html=True), "frontend")
+# app.mount(
+#     "/", SPAStaticFiles(directory="../frontend/public/", html=True), name="frontend"
+# )
+# from fastapi.templating import Jinja2Templates
+# t = Jinja2Templates(directory="../frontend/public/")
+# @app.get("/")
+# def f(request: Request):
+#     return t.TemplateResponse(request=request, name="index.html")
+
 
 host = "127.0.0.1"
 port = 8000
@@ -41,6 +71,7 @@ origins = [
     f"http://{host}:{port}",
     "http://192.168.56.1:3000",
     "http://localhost:3000",
+    "http://127.0.0.1:3000/",
 ]
 
 app.add_middleware(

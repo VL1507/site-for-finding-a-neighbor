@@ -1,9 +1,9 @@
 from fastapi import Depends
 
-from typing import Annotated, AsyncGenerator
+from typing import Annotated
 
-from sqlalchemy import Column, ForeignKey
-from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase, relationship
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
 from sqlalchemy.ext.asyncio import (
     AsyncAttrs,
     async_sessionmaker,
