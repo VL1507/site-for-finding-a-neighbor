@@ -18,8 +18,10 @@ python-jose = "^3.3.0"
 bcrypt = "^4.2.1"
 mypy = "^1.13.0"
 httpx = "^0.28.0"
-pytest = "^8.3.3"
 requests = "^2.32.3"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
 
 [build-system]
 requires = ["poetry-core"]

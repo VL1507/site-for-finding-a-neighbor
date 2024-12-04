@@ -31,15 +31,13 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 
-host = "127.0.0.1"
-port = 8000
 origins = [
     "http://localhost",
     "https://localhost",
     #
-    f"http://localhost:{port}",
-    f"http://{host}",
-    f"http://{host}:{port}",
+    f"http://localhost:8000",
+    f"http://127.0.0.1",
+    f"http://127.0.0.1:8000",
     #
     # "http://192.168.56.1:3000",
     "http://localhost:3000",
@@ -73,4 +71,4 @@ if __name__ == "__main__":
         handlers=[Handler()],
     )
 
-    uvicorn.run("main:app", host=host, port=port, reload=True)
+    uvicorn.run("main:app", reload=True)
