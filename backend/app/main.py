@@ -11,7 +11,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.exceptions import HTTPException
 
 
-import config
+from settings import settings
 from utils.custom_logger import setup_logger, Handler
 from database.models import create_db_and_tables
 
@@ -41,9 +41,11 @@ origins = [
     f"http://{host}",
     f"http://{host}:{port}",
     #
-    "http://192.168.56.1:3000",
+    # "http://192.168.56.1:3000",
     "http://localhost:3000",
-    "http://127.0.0.1:3000/",
+    # "http://127.0.0.1:3000/",
+    # "localhost:3000",
+    settings.FRONTEND.URL,
 ]
 
 app.add_middleware(
@@ -62,12 +64,12 @@ app.include_router(api_v1_router)
 
 @app.exception_handler(status.HTTP_401_UNAUTHORIZED)
 async def http_exception_handler(request: Request, exc: HTTPException):
-    return RedirectResponse(config.FRONTEND_URL)
+    return RedirectResponse(settings.FRONTEND.URL)
 
 
 if __name__ == "__main__":
     logging.basicConfig(
-        level=config.LOGGING_LEVEL,
+        level=settings.LOGGING.VALIDATE_LEVEL,
         handlers=[Handler()],
     )
 

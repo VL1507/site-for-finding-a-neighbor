@@ -7,7 +7,7 @@ from fastapi.requests import Request
 
 from database.requests import add_User, add_TgAouh, get_TgAouh, get_User
 
-from config import FRONTEND_URL, JWT_LIFE_TIME_MINUTES
+from settings import settings
 from utils.custom_logger import setup_logger
 from utils.get_user import UserDep
 from utils.access_token import create_access_token, decode_access_token
@@ -31,7 +31,7 @@ async def get_my_status(
 @router.get("/fake_aouh")
 def fake_aouh(request: Request):
 
-    response = RedirectResponse(f"{FRONTEND_URL}/status")
+    response = RedirectResponse(f"{settings.FRONTEND.URL}/status")
 
     # access_token = create_access_token(
     #     data={"user_id": 1}, minutes=JWT_LIFE_TIME_MINUTES
@@ -87,10 +87,10 @@ async def hello_world(request: Request, token: str):
 
     print(user)
 
-    response = RedirectResponse(f"{FRONTEND_URL}/status")
+    response = RedirectResponse(f"{settings.FRONTEND.URL}/status")
 
     access_token = create_access_token(
-        data={"user_id": user.id}, minutes=JWT_LIFE_TIME_MINUTES
+        data={"user_id": user.id}, minutes=settings.JWT.LIFE_TIME_MINUTES
     )
     print(access_token)
     response.set_cookie(

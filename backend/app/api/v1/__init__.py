@@ -2,9 +2,9 @@ from fastapi import APIRouter
 
 __all__ = ["api_v1_router"]
 
-from config import API_V1_STR
+from settings import settings
 
-api_v1_router = APIRouter(prefix=API_V1_STR)
+api_v1_router = APIRouter(prefix=settings.API_V1_STR)
 
 from . import create_profile
 from . import login_logout

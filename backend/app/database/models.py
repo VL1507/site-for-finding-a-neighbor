@@ -11,10 +11,9 @@ from sqlalchemy.ext.asyncio import (
     AsyncSession,
 )
 
-from config import SQLALCHEMY_URL
+from settings import settings
 
-
-engin = create_async_engine(SQLALCHEMY_URL, echo=True)
+engin = create_async_engine(settings.DB.URL, echo=True)
 
 async_session = async_sessionmaker(engin, expire_on_commit=False)
 
@@ -72,7 +71,8 @@ class Profile(Base):
 
 
 async def create_db_and_tables() -> None:
-    async with engin.begin() as conn:
+    # async with engin.begin() as conn:
+    async with engin.connect() as conn:
         # await conn.run_sync(Base.metadata.drop_all)
         await conn.run_sync(Base.metadata.create_all)
 
