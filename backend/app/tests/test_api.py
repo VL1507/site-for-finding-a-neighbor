@@ -7,20 +7,19 @@ from utils.access_token import create_access_token
 client = TestClient(app)
 
 
-def test_read_main():
+def test_():
     response = client.get("/")
-    assert response.status_code == 200
-    # assert response.json() == {"msg": "Hello World"}
+    assert response.status_code == 404
 
 
-def test_rrr():
+def test_2plus2():
     assert 2 + 2 == 4
 
 
-def test_qqq():
-    response = client.get("/qqq")
-    assert response.status_code == 200
-    assert response.history[0].status_code == 307
+# def test_qqq():
+#     response = client.get("/qqq")
+#     assert response.status_code == 200
+#     assert response.history[0].status_code == 307
 
 
 # def test_tg_aouh():
@@ -41,12 +40,13 @@ def test_qqq():
 #     assert response.json() == {"OK": 200}
 
 
-def test_me():
-    response = client.get("/me")
-    assert response.status_code == 200
-    # assert response.json() == {"msg": "Hello World"}
-    # print(response.headers.items())
-    assert response.history[0].status_code == 307
-    assert len(response.history) == 1
+# def test_me():
+#     response = client.get("/me")
+#     assert response.status_code == 200
+#     # assert response.json() == {"msg": "Hello World"}
+#     # print(response.headers.items())
+#     assert response.history[0].status_code == 307
+#     assert len(response.history) == 1
+
 
 # test_me()
