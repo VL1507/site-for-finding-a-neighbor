@@ -8,22 +8,11 @@ const fake_aouh = async (navigate: NavigateFunction) => {
     try {
         const url = "/fake_aouh";
         const response = await instance.get(url);
+        console.log(response.data);
 
-        console.log(response);
-
-        // console.log(response.data.redirect);
-
-        // if (response.data.redirect) {
-        //     window.location.href = response.data.redirect;
-
-        //     navigate(response.data.redirect);
-        // }
+        navigate("/status");
     } catch (error) {
         if (axios.isAxiosError(error)) {
-            // if (error.response?.data.redirect) {
-
-            //     navigate(error.response.data.redirect);
-            // }
             console.log(error, "err");
             console.log(error.response?.data.errText, "error");
         } else if (error instanceof Error) {
@@ -55,7 +44,6 @@ const Login = () => {
             <button
                 onClick={() => {
                     fake_aouh(navigate);
-                    // navigate("/status");
                 }}
             >
                 Авторизоваться

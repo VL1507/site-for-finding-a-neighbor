@@ -8,7 +8,7 @@ interface IUser {
 }
 async function getUser(): Promise<IUser | null> {
     try {
-        const url = "/get_user";
+        const url = "/get_info";
         const user: IUser = (await instance.get(url)).data;
         console.log(user);
         return user;
@@ -22,6 +22,24 @@ async function getUser(): Promise<IUser | null> {
         return null;
     }
 }
+
+async function logout() {
+    try {
+        const url = "/logout";
+        const response = (await instance.post(url)).data;
+        console.log(response);
+        // return user;
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            console.log(error, "err");
+            console.log(error.response?.data.errText, "error");
+        } else if (error instanceof Error) {
+            console.log(error.message);
+        }
+        return null;
+    }
+}
+
 const Status = () => {
     const [user, setUser] = useState<IUser | null>(null);
 
@@ -36,7 +54,9 @@ const Status = () => {
             <p>
                 Пользователь: {user?.id} {user?.is_admin}
             </p>
-            <button id="logout_btn">Выйти</button>
+            <button id="logout_btn" onClick={logout}>
+                Выйти
+            </button>
         </div>
     );
 };

@@ -19,7 +19,10 @@ async_session = async_sessionmaker(engin, expire_on_commit=False)
 
 
 class Base(AsyncAttrs, DeclarativeBase):
-    pass
+    # pass
+
+    def __repr__(self):
+        return str(self)
 
 
 class User(Base):
@@ -31,8 +34,8 @@ class User(Base):
     def __str__(self):
         return f"<{self.__class__.__name__}({self.id = } {self.is_admin = })>"
 
-    def __repr__(self):
-        return str(self)
+    # def __repr__(self):
+    #     return str(self)
 
 
 class TgAouh(Base):
@@ -45,8 +48,8 @@ class TgAouh(Base):
     def __str__(self):
         return f"<{self.__class__.__name__}({self.id = } {self.tg_id = } {self.user_id = })>"
 
-    def __repr__(self):
-        return str(self)
+    # def __repr__(self):
+    #     return str(self)
 
 
 class Profile(Base):
@@ -66,8 +69,8 @@ class Profile(Base):
     def __str__(self):
         return f"<{self.__class__.__name__}({self.id = })>"
 
-    def __repr__(self):
-        return str(self)
+    # def __repr__(self):
+    #     return str(self)
 
 
 async def create_db_and_tables() -> None:

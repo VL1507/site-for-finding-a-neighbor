@@ -2,7 +2,7 @@ from jose import JWTError
 from datetime import datetime, timezone
 
 from fastapi import APIRouter, HTTPException, status
-from fastapi.responses import Response, RedirectResponse
+from fastapi.responses import Response, RedirectResponse, JSONResponse
 from fastapi.requests import Request
 
 from database.requests import add_User, add_TgAouh, get_TgAouh, get_User
@@ -25,25 +25,27 @@ async def get_my_status(
     print(user)
     logger.debug(user)
 
-    return {"user": user}
+    return user
 
 
 @router.get("/fake_aouh")
 def fake_aouh(request: Request):
+    access_token = create_access_token(
+        data={"user_id": 1}, minutes=settings.JWT.LIFE_TIME_MINUTES
+    )
 
-    response = RedirectResponse(f"{settings.FRONTEND.URL}/status")
+    response = JSONResponse(content={"OK": 200, "user_access_token": access_token})
 
-    # access_token = create_access_token(
-    #     data={"user_id": 1}, minutes=JWT_LIFE_TIME_MINUTES
-    # )
-    # print(access_token)
-    # response.set_cookie(
-    #     key="user_access_token",
-    #     value=access_token,
-    #     httponly=True,
-    #     samesite="none",
-    #     secure=True,
-    # )
+    print(access_token)
+
+    response.set_cookie(
+        key="user_access_token",
+        value=access_token,
+        httponly=True,
+        samesite="none",
+        secure=True,
+    )
+
     return response
 
 
@@ -107,5 +109,10 @@ async def hello_world(request: Request, token: str):
 @router.post("/logout", summary="Выход из аккаунта. Удаляет куки")
 async def logout_user(response: Response):
     print(response.headers.items())
-    response.delete_cookie(key="user_access_token")
+    response.delete_cookie(
+        key="user_access_token",
+        httponly=True,
+        samesite="none",
+        secure=True,
+    )
     return {"message": "Пользователь успешно вышел из системы"}
