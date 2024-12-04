@@ -10,19 +10,11 @@ from database.repositories.user import UserRepository
 from utils.get_user import UserDep
 from utils.custom_logger import setup_logger
 
+from schemas.schemas import SProfile
 
 logger = setup_logger(__name__)
 
 router = APIRouter()
-
-
-class SProfile(BaseModel):
-    name: str
-    gender: str
-    status: str
-    smoking: str
-    go_to_bed_at: str
-    get_up_in: str
 
 
 @router.post("/create_profile")
