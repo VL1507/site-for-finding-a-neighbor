@@ -24,8 +24,8 @@ async def lifespan(app: FastAPI):
     print("start")
     await create_db_and_tables()
     print("create db")
-
     yield
+    print("stop")
 
 
 app = FastAPI(lifespan=lifespan)
@@ -45,6 +45,7 @@ origins = [
     # "localhost:3000",
     settings.FRONTEND.URL,
 ]
+print(origins)
 
 app.add_middleware(
     CORSMiddleware,

@@ -1,12 +1,33 @@
 import logging
 from functools import lru_cache
 from typing import Literal
-from pydantic import BaseModel, ValidationInfo, computed_field, field_validator
+from pydantic import (
+    computed_field,
+    PostgresDsn,
+    HttpUrl,
+)
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-class DB(BaseSettings):
+class DB_sqlite(BaseSettings):
     URL: str
+
+
+class DB_PostgreSQL(BaseSettings):
+    USERNAME: str
+    SECRET: str
+    HOST: str
+    PORT: str
+    NAME: str
+
+    @computed_field
+    @property
+    def URL(self) -> str:
+        return str(
+            PostgresDsn(
+                f"postgresql+asyncpg://{self.USERNAME}:{self.SECRET}@{self.HOST}:{self.PORT}/{self.NAME}"
+            )
+        )
 
 
 class LOGGING(BaseSettings):
@@ -37,7 +58,7 @@ class FRONTEND(BaseSettings):
     @computed_field
     @property
     def URL(self) -> str:
-        return f"http://{self.HOST}:{self.PORT}"
+        return str(HttpUrl(f"http://{self.HOST}:{self.PORT}"))
 
 
 class JWT(BaseSettings):
@@ -47,7 +68,8 @@ class JWT(BaseSettings):
 
 
 class Settings(BaseSettings):
-    DB: DB
+    DB: DB_sqlite
+    # DB: DB_PostgreSQL
     LOGGING: LOGGING
     API_V1_STR: str
     JWT: JWT
