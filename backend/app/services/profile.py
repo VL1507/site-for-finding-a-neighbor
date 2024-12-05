@@ -46,5 +46,9 @@ class ProfileService:
         profile_id = await self.profile_repo.add_one(data)
         return profile_id
 
+    async def del_by_id(self, id: int) -> bool:
+        # TODO
+        return True
+
 
 ProfileServiceDep = Annotated[ProfileService, Depends(ProfileService)]

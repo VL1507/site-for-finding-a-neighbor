@@ -45,7 +45,7 @@ origins = [
     # "localhost:3000",
     settings.FRONTEND.URL,
 ]
-print(origins)
+# print(origins)
 
 app.add_middleware(
     CORSMiddleware,

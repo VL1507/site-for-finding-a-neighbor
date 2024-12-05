@@ -9,10 +9,10 @@ from services.user import UserServiceDep
 
 logger = setup_logger(__name__)
 
-router = APIRouter(tags=["service"])
+router = APIRouter(tags=["User API"])
 
 
-@router.get("/user/{user_id}")
+@router.get("/user/{user_id}", summary="Get user by user_id")
 async def get_my_status(service: UserServiceDep, user_id: int) -> SUser:
     user = await service.get_by_id(id=user_id)
 
@@ -22,6 +22,6 @@ async def get_my_status(service: UserServiceDep, user_id: int) -> SUser:
     return user
 
 
-@router.get("/get_all_users")
+@router.get("/get_all_users", summary="Get all users")
 async def get_my_status(service: UserServiceDep) -> list[SUser]:
     return await service.get_all()

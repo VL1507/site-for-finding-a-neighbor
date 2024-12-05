@@ -14,7 +14,7 @@ from utils.access_token import create_access_token, decode_access_token
 
 logger = setup_logger(__name__)
 
-router = APIRouter(tags=["Авторизация"])
+router = APIRouter(tags=["Authorization and logout"])
 
 
 @router.get("/get_info")
@@ -29,7 +29,7 @@ async def get_my_status(
 
 
 @router.get("/fake_aouh")
-def fake_aouh(request: Request):
+def fake_aouh():
     access_token = create_access_token(
         data={"user_id": 1}, minutes=settings.JWT.LIFE_TIME_MINUTES
     )
@@ -49,8 +49,8 @@ def fake_aouh(request: Request):
     return response
 
 
-@router.get("/tg_aouh/{token}", summary="Авторизация через тг-бота")
-async def hello_world(request: Request, token: str):
+@router.get("/tg_aouh/{token}", summary="Authorization using tg-bot")
+async def hello_world(token: str):
 
     try:
         payload = decode_access_token(token)
@@ -106,7 +106,7 @@ async def hello_world(request: Request, token: str):
     return response
 
 
-@router.post("/logout", summary="Выход из аккаунта. Удаляет куки")
+@router.post("/logout", summary="Log out of your account. Removes cookies")
 async def logout_user(response: Response):
     print(response.headers.items())
     response.delete_cookie(
