@@ -17,10 +17,11 @@ class Repository(Generic[Table]):
     def __init__(self, session: AsyncSession):
         self.session = session
 
-    async def get_all(self) -> Sequence[type[Table]]:
-        stmt = select(self.table)
+    async def get_all(
+        self, limit: int | None = None, offset: int | None = None
+    ) -> Sequence[type[Table]]:
+        stmt = select(self.table).limit(limit).offset(offset)
         res = await self.session.execute(stmt)
-        # return res.scalars().all()
         return res.scalars().all()
 
     async def get_by_id(self, id: int) -> type[Table] | None:
@@ -44,3 +45,4 @@ class Repository(Generic[Table]):
         except Exception as e:
             logger.error(e)
             await self.session.rollback()
+

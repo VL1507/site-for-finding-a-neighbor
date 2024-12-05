@@ -16,10 +16,12 @@ class UserService:
     def __init__(self, session: AsyncSession = Depends(get_session)):
         self.user_repo = UserRepository(session=session)
 
-    async def get_all(self) -> list[SUser]:
+    async def get_all(
+        self, limit: int | None = None, offset: int | None = None
+    ) -> list[SUser]:
         return [
             SUser(id=user.id, is_admin=user.is_admin)
-            for user in await self.user_repo.get_all()
+            for user in await self.user_repo.get_all(limit=limit, offset=offset)
         ]
 
     async def get_by_id(self, id: int) -> SUser | None:

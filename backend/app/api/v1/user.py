@@ -3,6 +3,8 @@ from fastapi.requests import Request
 from fastapi.exceptions import HTTPException
 from fastapi.responses import JSONResponse
 
+from pydantic import BaseModel
+
 from schemas.user import SUser
 from utils.custom_logger import setup_logger
 from services.user import UserServiceDep
@@ -22,6 +24,11 @@ async def get_my_status(service: UserServiceDep, user_id: int) -> SUser:
     return user
 
 
-@router.get("/get_all_users", summary="Get all users")
-async def get_my_status(service: UserServiceDep) -> list[SUser]:
-    return await service.get_all()
+class GetAllModel(BaseModel):
+    limit: int | None = None
+    offset: int | None = None
+
+
+@router.post("/get_all_users", summary="Get all users")
+async def get_my_status(service: UserServiceDep, g: GetAllModel) -> list[SUser]:
+    return await service.get_all(limit=g.limit, offset=g.offset)
