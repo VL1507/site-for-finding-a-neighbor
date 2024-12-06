@@ -1,8 +1,7 @@
 from sqlalchemy import ScalarResult, Sequence, select
 
-from database.models import async_session, Profile, User, TgAouh
-
-from utils import custom_logger
+from app.database.models import async_session, Profile, User, TgAouh
+from app.utils import custom_logger
 
 logger = custom_logger.setup_logger(__name__)
 

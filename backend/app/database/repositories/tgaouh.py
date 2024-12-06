@@ -1,6 +1,7 @@
 from sqlalchemy import Sequence, select
-from database.models import TgAouh
-from database.repository import Repository
+
+from app.database.models import TgAouh
+from app.database.repository import Repository
 
 
 class TgAouhRepository(Repository[TgAouh]):

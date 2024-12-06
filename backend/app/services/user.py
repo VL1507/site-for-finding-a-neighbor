@@ -3,10 +3,10 @@ from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 
-from utils import custom_logger
-from schemas.user import SUser
-from database.repositories.user import UserRepository
-from database.models import get_session
+from app.utils import custom_logger
+from app.schemas.user import SUser
+from app.database.repositories.user import UserRepository
+from app.database.models import get_session
 
 
 logger = custom_logger.setup_logger(__name__)

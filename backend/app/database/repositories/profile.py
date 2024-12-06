@@ -1,6 +1,7 @@
 from sqlalchemy import Sequence, select
-from database.models import Profile
-from database.repository import Repository
+
+from app.database.models import Profile
+from app.database.repository import Repository
 
 
 class ProfileRepository(Repository[Profile]):

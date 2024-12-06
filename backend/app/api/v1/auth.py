@@ -5,12 +5,11 @@ from fastapi import APIRouter, HTTPException, status
 from fastapi.responses import Response, RedirectResponse, JSONResponse
 from fastapi.requests import Request
 
-from database.requests import add_User, add_TgAouh, get_TgAouh, get_User
-
-from settings import settings
-from utils.custom_logger import setup_logger
-from utils.get_user import UserDep
-from utils.access_token import create_access_token, decode_access_token
+from app.database.requests import add_User, add_TgAouh, get_TgAouh, get_User
+from app.settings import settings
+from app.utils.custom_logger import setup_logger
+from app.utils.get_user import UserDep
+from app.utils.access_token import create_access_token, decode_access_token
 
 logger = setup_logger(__name__)
 

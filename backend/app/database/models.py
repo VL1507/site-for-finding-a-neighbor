@@ -11,7 +11,7 @@ from sqlalchemy.ext.asyncio import (
     AsyncSession,
 )
 
-from settings import settings
+from app.settings import settings
 
 engin = create_async_engine(settings.DB.URL, echo=True)
 

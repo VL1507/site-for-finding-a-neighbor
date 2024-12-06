@@ -4,7 +4,8 @@ from sqlalchemy import Sequence, insert, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from .models import Base
-from utils import custom_logger
+
+from app.utils import custom_logger
 
 logger = custom_logger.setup_logger(__name__)
 

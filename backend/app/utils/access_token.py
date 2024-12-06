@@ -2,7 +2,7 @@ from typing import Any
 from jose import jwt
 from datetime import datetime, timedelta, timezone
 
-from settings import settings
+from app.settings import settings
 
 
 def create_access_token(data: dict, minutes: float) -> str:

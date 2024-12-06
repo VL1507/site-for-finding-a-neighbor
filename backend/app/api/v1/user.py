@@ -5,9 +5,9 @@ from fastapi.responses import JSONResponse
 
 from pydantic import BaseModel
 
-from schemas.user import SUser
-from utils.custom_logger import setup_logger
-from services.user import UserServiceDep
+from app.schemas.user import SUser
+from app.utils.custom_logger import setup_logger
+from app.services.user import UserServiceDep
 
 logger = setup_logger(__name__)
 

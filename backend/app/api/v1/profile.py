@@ -4,11 +4,10 @@ from fastapi.responses import JSONResponse
 
 from pydantic import BaseModel
 
-from utils.get_user import UserDep
-from utils.custom_logger import setup_logger
-
-from schemas.profile import SProfile
-from services.profile import ProfileServiceDep
+from app.utils.get_user import UserDep
+from app.utils.custom_logger import setup_logger
+from app.schemas.profile import SProfile
+from app.services.profile import ProfileServiceDep
 
 logger = setup_logger(__name__)
 

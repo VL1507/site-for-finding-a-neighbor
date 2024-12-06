@@ -11,9 +11,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.exceptions import HTTPException
 
 
-from settings import settings
-from utils.custom_logger import setup_logger, Handler
-from database.models import create_db_and_tables
+from app.settings import settings
+from app.utils.custom_logger import setup_logger, Handler
+from app.database.models import create_db_and_tables
+from app.api import api_v1_router
 
 
 logger = setup_logger(__name__)
@@ -30,7 +31,13 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
+# def create_app():
+    
+#     app = FastAPI(lifespan=lifespan)
+    
+#     return app
 
+    
 origins = [
     "http://localhost",
     "https://localhost",
@@ -56,7 +63,7 @@ app.add_middleware(
 )
 
 
-from api import api_v1_router
+
 
 app.include_router(api_v1_router)
 

@@ -6,10 +6,9 @@ from fastapi import status, HTTPException, Depends
 from fastapi.requests import Request
 
 
-from database.models import User, SessionDep
-from database.repositories.user import UserRepository
-
-from utils.access_token import decode_access_token
+from app.database.models import User, SessionDep
+from app.database.repositories.user import UserRepository
+from app.utils.access_token import decode_access_token
 
 
 def get_token(request: Request) -> str:
