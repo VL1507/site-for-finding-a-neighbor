@@ -16,6 +16,17 @@ logger = setup_logger(__name__)
 router = APIRouter(tags=["Authorization and logout"])
 
 
+@router.get("/ping")
+async def ping(
+    # request: Request,
+    # user: UserDep,
+):
+    # print(user)
+    # logger.debug(user)
+
+    return {"ping": 1}
+
+
 @router.get("/get_info")
 async def get_my_status(
     request: Request,

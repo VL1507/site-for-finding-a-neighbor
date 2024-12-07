@@ -32,15 +32,18 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 # def create_app():
-    
+
 #     app = FastAPI(lifespan=lifespan)
-    
+
 #     return app
 
-    
+
 origins = [
     "http://localhost",
     "https://localhost",
+    # 
+    "http://0.0.0.0:8000",
+    "http://0.0.0.0",
     #
     f"http://localhost:8000",
     f"http://127.0.0.1",
@@ -51,6 +54,7 @@ origins = [
     # "http://127.0.0.1:3000/",
     # "localhost:3000",
     settings.FRONTEND.URL,
+    "http://0.0.0.0:8000",
 ]
 # print(origins)
 
@@ -61,8 +65,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
 
 
 app.include_router(api_v1_router)

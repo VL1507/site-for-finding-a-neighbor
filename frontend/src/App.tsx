@@ -8,6 +8,7 @@ import Login from "./components/auth/login";
 import PrivateRoute from "./utils/router/privateRoute";
 import Me from "./components/me";
 import CreateProfile from "./components/create_profile";
+import Ping from "./components/ping";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/me" element={<Me />} />
                 <Route path="/create_profile" element={<CreateProfile />} />
+                <Route path="/ping" element={<Ping />} />
             </Routes>
         </div>
     );

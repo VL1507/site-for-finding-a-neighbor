@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const backend_host = "127.0.0.1";
+// const backend_host = "127.0.0.1";
+// const backend_host = "0.0.0.0";
+const backend_host = "localhost";
 const backend_port = "8000";
 const backend_api_path = "api/v1";
 

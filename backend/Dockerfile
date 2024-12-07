@@ -1,5 +1,7 @@
 FROM python:3.10-slim
 
+RUN apt-get update && apt-get install -y curl
+
 WORKDIR /backend
 
 ENV PYTHONDONTWRITEBYTECODE 1 
@@ -14,8 +16,9 @@ RUN poetry config virtualenvs.create false
 RUN poetry install --no-interaction
 
 # COPY ./app/ /backend/app/
-COPY . /backend
+COPY ./app/ /backend/app/
 
 EXPOSE 8000
 
-CMD [ "poetry", "run", "uvicorn", "app.main:app", "--reload", "--host", "127.0.0.1", "--port", "8000"]
+# CMD [ "poetry", "run", "uvicorn", "app.main:app", "--reload", "--proxy-headers", "--host", "0.0.0.0", "--port", "8000"]
+# CMD [ "poetry", "run", "uvicorn", "app.main:app", "--reload", "--proxy-headers", "--host", "127.0.0.1", "--port", "8000"]
