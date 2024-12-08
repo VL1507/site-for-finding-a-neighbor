@@ -1,14 +1,12 @@
 from typing import Annotated
-from jose import JWTError
 from datetime import datetime, timezone
 
 from fastapi import status, HTTPException, Depends
 from fastapi.requests import Request
 
-
 from app.database.models import User, SessionDep
 from app.database.repositories.user import UserRepository
-from app.utils.access_token import decode_access_token
+from app.utils.jwt_manager import jwt_manager
 
 
 def get_token(request: Request) -> str:
@@ -25,9 +23,9 @@ async def get_current_user(
     session: SessionDep,
 ) -> User:
     user_repo = UserRepository(session)
-    try:
-        payload = decode_access_token(token)
-    except JWTError:
+
+    payload = jwt_manager.decode_jwt(token=token)
+    if payload is None:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Токен не валидный!"
         )

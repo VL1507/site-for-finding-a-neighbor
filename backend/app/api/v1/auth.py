@@ -1,4 +1,3 @@
-from jose import JWTError
 from datetime import datetime, timezone
 
 from fastapi import APIRouter, HTTPException, status
@@ -9,7 +8,11 @@ from app.database.requests import add_User, add_TgAouh, get_TgAouh, get_User
 from app.settings import settings
 from app.utils.custom_logger import setup_logger
 from app.utils.get_user import UserDep
-from app.utils.access_token import create_access_token, decode_access_token
+from app.utils.jwt_manager import jwt_manager
+# from app.utils.access_token import create_access_token, decode_access_token
+
+
+# from app.utils.jwt_manager import jwt_manager
 
 logger = setup_logger(__name__)
 
@@ -40,9 +43,7 @@ async def get_my_status(
 
 @router.get("/fake_aouh")
 def fake_aouh():
-    access_token = create_access_token(
-        data={"user_id": 1}, minutes=settings.JWT.LIFE_TIME_MINUTES
-    )
+    access_token = jwt_manager.encode_jwt(payload={"user_id": 1})
 
     response = JSONResponse(content={"OK": 200, "user_access_token": access_token})
 
@@ -61,9 +62,8 @@ def fake_aouh():
 
 @router.get("/tg_aouh/{token}", summary="Authorization using tg-bot")
 async def hello_world(token: str):
-    try:
-        payload = decode_access_token(token)
-    except JWTError:
+    payload = jwt_manager.decode_jwt(token=token)
+    if payload is None:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Токен не валидный!"
         )
@@ -100,9 +100,8 @@ async def hello_world(token: str):
 
     response = RedirectResponse(f"{settings.FRONTEND.URL}/status")
 
-    access_token = create_access_token(
-        data={"user_id": user.id}, minutes=settings.JWT.LIFE_TIME_MINUTES
-    )
+    access_token = jwt_manager.encode_jwt(payload={"user_id": user.id})
+
     print(access_token)
     response.set_cookie(
         key="user_access_token",

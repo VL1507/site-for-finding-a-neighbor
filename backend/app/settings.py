@@ -1,6 +1,7 @@
 import logging
-from functools import lru_cache
+from pathlib import Path
 from typing import Literal
+from functools import lru_cache
 
 from pydantic import (
     HttpUrl,
@@ -63,8 +64,8 @@ class FRONTEND(BaseSettings):
 
 
 class JWT(BaseSettings):
-    SECRET_KEY: str
-    ALGORITHM: str
+    PRIVATE_KEY_PATH: Path
+    PUBLIC_KEY_PATH: Path
     LIFE_TIME_MINUTES: int
 
 
