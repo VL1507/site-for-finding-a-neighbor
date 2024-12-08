@@ -7,6 +7,8 @@ runapp2:
 
 # runappf:
 # 	poetry run uvicorn --factory app.main:create_app --reload 
+format:
+	ruff format
 
 testapp:
 	pytest

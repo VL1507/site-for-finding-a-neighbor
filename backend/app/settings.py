@@ -76,8 +76,7 @@ class Settings(BaseSettings):
     JWT: JWT
     FRONTEND: FRONTEND
 
-    model_config = SettingsConfigDict(
-        env_file="./app/.env", env_nested_delimiter="__")
+    model_config = SettingsConfigDict(env_file="./app/.env", env_nested_delimiter="__")
 
 
 @lru_cache

@@ -61,7 +61,6 @@ def fake_aouh():
 
 @router.get("/tg_aouh/{token}", summary="Authorization using tg-bot")
 async def hello_world(token: str):
-
     try:
         payload = decode_access_token(token)
     except JWTError:
