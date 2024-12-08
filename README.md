@@ -1,4 +1,4 @@
-# backend
+# site-for-finding-a-neighbor
 
 ## Installation
 
@@ -11,9 +11,9 @@
 2. Generate RSA keys:
 
      ```bash
+     cd ./backend/app/
      mkdir certs
-     openssl genrsa -out certs/jwt-private.pem 2048
-     openssl rsa -in certs/jwt-private.pem -pubout -out certs/jwt-public.pem
+     openssl req -x509 -nodes -newkey rsa:2048 -keyout certs/jwt_private_key.pem -out certs/jwt_public_key.pem
      ```
 
 3. Create a `.env` file. Use the `.env.example` as a reference.
