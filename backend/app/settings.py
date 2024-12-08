@@ -1,10 +1,11 @@
 import logging
 from functools import lru_cache
 from typing import Literal
+
 from pydantic import (
-    computed_field,
-    PostgresDsn,
     HttpUrl,
+    PostgresDsn,
+    computed_field,
 )
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -75,7 +76,8 @@ class Settings(BaseSettings):
     JWT: JWT
     FRONTEND: FRONTEND
 
-    model_config = SettingsConfigDict(env_file="./app/.env", env_nested_delimiter="__")
+    model_config = SettingsConfigDict(
+        env_file="./app/.env", env_nested_delimiter="__")
 
 
 @lru_cache

@@ -1,14 +1,13 @@
+from . import auth, profile, user
 from fastapi import APIRouter
-
-__all__ = ["api_v1_router"]
 
 from app.settings import settings
 
+# __all__ = ["api_v1_router"]
+
+
 api_v1_router = APIRouter(prefix=settings.API_V1_STR)
 
-from . import user
-from . import profile
-from . import auth
 
 api_v1_router.include_router(user.router)
 api_v1_router.include_router(profile.router)

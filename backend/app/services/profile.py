@@ -5,7 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.utils import custom_logger
 from app.schemas.profile import SProfile
-from app.database.repositories.profile import ProfileRepository, Profile
+from app.database.repositories.profile import ProfileRepository
 from app.database.models import get_session
 
 

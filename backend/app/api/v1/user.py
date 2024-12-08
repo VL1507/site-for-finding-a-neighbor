@@ -1,7 +1,5 @@
 from fastapi import APIRouter
-from fastapi.requests import Request
 from fastapi.exceptions import HTTPException
-from fastapi.responses import JSONResponse
 
 from pydantic import BaseModel
 
@@ -30,5 +28,5 @@ class GetAllModel(BaseModel):
 
 
 @router.post("/get_all_users", summary="Get all users")
-async def get_my_status(service: UserServiceDep, g: GetAllModel) -> list[SUser]:
+async def get_all_users(service: UserServiceDep, g: GetAllModel) -> list[SUser]:
     return await service.get_all(limit=g.limit, offset=g.offset)

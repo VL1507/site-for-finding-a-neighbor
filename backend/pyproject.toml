@@ -19,11 +19,13 @@ httpx = "^0.28.0"
 requests = "^2.32.3"
 asyncpg = "^0.30.0"
 alembic = "^1.14.0"
+cryptography = "^44.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.4"
 aiosqlite = "^0.20.0"
 mypy = "^1.13.0"
+ruff = "^0.8.2"
 
 [build-system]
 requires = ["poetry-core"]
@@ -32,3 +34,5 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.mypy]
 strict = true
+
+# [tool.ruff]

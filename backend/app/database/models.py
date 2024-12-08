@@ -19,7 +19,6 @@ async_session = async_sessionmaker(engin, expire_on_commit=False)
 
 
 class Base(AsyncAttrs, DeclarativeBase):
-
     def __repr__(self):
         return str(self)
 

@@ -46,4 +46,3 @@ class Repository(Generic[Table]):
         except Exception as e:
             logger.error(e)
             await self.session.rollback()
-

@@ -1,21 +1,17 @@
 import logging
-
-import uvicorn
-
 from contextlib import asynccontextmanager
 
+import uvicorn
 from fastapi import FastAPI, status
+from fastapi.exceptions import HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.requests import Request
 from fastapi.responses import RedirectResponse
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.exceptions import HTTPException
 
-
-from app.settings import settings
-from app.utils.custom_logger import setup_logger, Handler
-from app.database.models import create_db_and_tables
 from app.api import api_v1_router
-
+from app.database.models import create_db_and_tables
+from app.settings import settings
+from app.utils.custom_logger import Handler, setup_logger
 
 logger = setup_logger(__name__)
 
@@ -41,13 +37,13 @@ app = FastAPI(lifespan=lifespan)
 origins = [
     "http://localhost",
     "https://localhost",
-    # 
+    #
     "http://0.0.0.0:8000",
     "http://0.0.0.0",
     #
-    f"http://localhost:8000",
-    f"http://127.0.0.1",
-    f"http://127.0.0.1:8000",
+    "http://localhost:8000",
+    "http://127.0.0.1",
+    "http://127.0.0.1:8000",
     #
     # "http://192.168.56.1:3000",
     "http://localhost:3000",

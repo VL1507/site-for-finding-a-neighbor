@@ -1,4 +1,4 @@
-from sqlalchemy import Sequence, select
+
 
 from app.database.models import Profile
 from app.database.repository import Repository

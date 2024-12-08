@@ -1,10 +1,7 @@
 from fastapi import APIRouter, HTTPException, status
-from fastapi.responses import JSONResponse
-
 
 from pydantic import BaseModel
 
-from app.utils.get_user import UserDep
 from app.utils.custom_logger import setup_logger
 from app.schemas.profile import SProfile
 from app.services.profile import ProfileServiceDep
@@ -15,7 +12,11 @@ router = APIRouter(tags=["Profile API"])
 
 
 @router.get("/profile/{profile_id}", summary="Get profile by profile_id")
-async def get_profile(service: ProfileServiceDep, profile_id: int) -> SProfile:
+async def get_profile(
+    service: ProfileServiceDep,
+    profile_id: int,
+    # user: UserDep
+) -> SProfile:
     profile = await service.get_by_id(id=profile_id)
 
     if profile is None:
