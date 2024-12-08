@@ -5,7 +5,7 @@
 1. Clone the repository:
 
      ```bash
-     git clone https://github.com/
+     git clone [https://github.com/](https://github.com/VL1507/site-for-finding-a-neighbor.git)
      ```
 
 2. Generate RSA keys:
