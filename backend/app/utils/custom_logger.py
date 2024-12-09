@@ -38,3 +38,10 @@ def setup_logger(name: str, level=logging.DEBUG) -> logging.Logger:
     logger.addHandler(handler)
     logger.setLevel(level)
     return logger
+
+
+def logging_basicConfig(level):
+    logging.basicConfig(
+        level=level,
+        handlers=[Handler()],
+    )

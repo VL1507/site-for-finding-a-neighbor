@@ -1,0 +1,285 @@
+@import url("https://fonts.googleapis.com/css2?family=Jockey+One&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #e0f9ff;
+  font-family: "Jockey One", sans-serif;
+}
+
+ul li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.main__inner {
+  width: 100%;
+  height: 90dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+}
+
+.main__search {
+  margin: 28px 0 0 60px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  width: 60px;
+  font-size: 20px;
+}
+
+.main__nav p {
+  margin: 28px 60px 0 0;
+  color: #818181;
+}
+
+.main__nav span {
+  color: #272727;
+}
+
+.main__block {
+  width: 640px;
+  height: 794px;
+  background-color: #ccf5ff;
+  border-radius: 60px;
+  margin: 0px auto;
+  border: 2px solid #a99e91;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1 {
+  padding-top: 40px;
+}
+
+.greetings {
+  padding-top: 80px;
+  font-size: 48px;
+  width: 280px;
+  text-align: center;
+  font-weight: 400;
+}
+
+button {
+  border: none;
+  outline: none;
+  width: 480px;
+  height: 61px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.create {
+  margin-top: 80px;
+  background-color: #4d4d4d;
+  color: white;
+}
+
+.enter {
+  margin-top: 30px;
+}
+
+.main__wrap {
+  width: 640px;
+  height: 794px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 492px;
+  height: 524px;
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: flex-start;
+  position: relative;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.login__enter {
+  font-size: 48px;
+  font-weight: 400;
+  margin-top: 60px;
+}
+
+.back-button {
+  background: transparent;
+  width: 55px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.back-button img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.social li {
+  transition: all 1s ease-in-out;
+}
+
+.social li:hover {
+  transition: all 1s ease-in-out;
+  transform: scale(1.1);
+}
+
+input:not(.main__search) {
+  width: 100%;
+  height: 66px;
+  border-radius: 16px;
+  border: 2px solid #a3bec2;
+  background-color: #f9f9f9;
+  padding: 15px;
+  font-size: 30px;
+  outline: none;
+}
+
+.main__select {
+  width: 100%;
+  height: 66px;
+  border-radius: 16px;
+  border: 2px solid #a3bec2;
+  background-color: #f9f9f9;
+  padding: 15px;
+  font-size: 30px;
+  outline: none;
+}
+
+.select__wrap {
+  position: relative;
+}
+
+.select__img {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  width: 33px;
+  height: 33px;
+}
+
+.select__img img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.enter__enter {
+  background-color: #e6e6e6;
+  font-size: 24px;
+}
+
+.enter__registr {
+  background-color: #4d4d4d;
+  font-size: 24px;
+  border: 1px solid #000000;
+  color: white;
+}
+
+.social {
+  height: 67px;
+  width: 100%;
+}
+.social ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.social ul img {
+  object-fit: contain;
+}
+
+.enter__registr.disabled {
+  opacity: 0.6;
+}
+
+.reg__title {
+  margin-top: 60px;
+  font-size: 40px;
+}
+
+.reg__desc {
+  font-size: 24px;
+}
+
+.next__btn {
+  width: 110px;
+  height: 110px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-radius: 50%;
+  background-color: #818181;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 10px;
+}
+
+.next__btn img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.next__btn.disabled {
+  background-color: #bcbcbc;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; /* this removes the default margin */
+}
+
+.date__group {
+  display: flex;
+  justify-content: space-between;
+  width: 377px;
+  height: 66px;
+}
+
+.date,
+.month {
+  width: 77px !important;
+  text-align: center;
+}
+
+.year {
+  width: 173px !important;
+  text-align: center;
+}
+
+option {
+  padding-bottom: 15px;
+  font-size: 25px;
+}
+
+select {
+  appearance: none; /* Remove default arrow */
+  -webkit-appearance: none; /* For Chrome and Safari */
+  -moz-appearance: none; /* For Firefox */
+  cursor: pointer;
+}

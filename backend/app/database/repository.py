@@ -30,8 +30,9 @@ class Repository(Generic[Table]):
         res = await self.session.scalar(stmt)
         return res
 
-    async def add_one(self, data: dict) -> int:
-        stmt = insert(self.table).values(**data).returning(self.table.id)
+    async def add_one(self, **kwargs) -> int:
+        # TODO test kwargs
+        stmt = insert(self.table).values(kwargs).returning(self.table.id)
         res = await self.session.execute(stmt)
         await self.session.commit()
         return res.scalar_one()

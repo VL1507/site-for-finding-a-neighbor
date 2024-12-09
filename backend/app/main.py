@@ -1,4 +1,3 @@
-import logging
 from contextlib import asynccontextmanager
 
 import uvicorn
@@ -11,7 +10,7 @@ from fastapi.responses import RedirectResponse
 from app.api import api_v1_router
 from app.database.models import create_db_and_tables
 from app.settings import settings
-from app.utils.custom_logger import Handler, setup_logger
+from app.utils.custom_logger import setup_logger, logging_basicConfig
 
 logger = setup_logger(__name__)
 
@@ -72,9 +71,6 @@ async def http_exception_handler(request: Request, exc: HTTPException):
 
 
 if __name__ == "__main__":
-    logging.basicConfig(
-        level=settings.LOGGING.VALIDATE_LEVEL,
-        handlers=[Handler()],
-    )
+    logging_basicConfig(level=settings.LOGGING.VALIDATE_LEVEL)
 
     uvicorn.run("main:app", reload=True)
