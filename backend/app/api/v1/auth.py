@@ -8,11 +8,8 @@ from app.database.requests import add_User, add_TgAouh, get_TgAouh, get_User
 from app.settings import settings
 from app.utils.custom_logger import setup_logger
 from app.utils.get_user import UserDep
-from app.utils.jwt_manager import jwt_manager
-# from app.utils.access_token import create_access_token, decode_access_token
+from app.utils.jwt_manager import jwt_manager, tg_bot_jwt_manager
 
-
-# from app.utils.jwt_manager import jwt_manager
 
 logger = setup_logger(__name__)
 
@@ -31,7 +28,7 @@ async def ping(
 
 
 @router.get("/get_info")
-async def get_my_status(
+async def get_info(
     request: Request,
     user: UserDep,
 ):
@@ -61,8 +58,9 @@ def fake_aouh():
 
 
 @router.get("/tg_aouh/{token}", summary="Authorization using tg-bot")
-async def hello_world(token: str):
-    payload = jwt_manager.decode_jwt(token=token)
+async def tg_aouh(token: str):
+    payload = tg_bot_jwt_manager.decode_jwt(token=token)
+    print(payload)
     if payload is None:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Токен не валидный!"

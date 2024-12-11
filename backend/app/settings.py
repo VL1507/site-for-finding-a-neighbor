@@ -69,6 +69,12 @@ class JWT(BaseSettings):
     LIFE_TIME_MINUTES: int
 
 
+class TgBot(BaseSettings):
+    PRIVATE_KEY_PATH: Path
+    PUBLIC_KEY_PATH: Path
+    LIFE_TIME_MINUTES: int
+
+
 class Settings(BaseSettings):
     DB: DB_sqlite
     # DB: DB_PostgreSQL
@@ -76,6 +82,7 @@ class Settings(BaseSettings):
     API_V1_STR: str
     JWT: JWT
     FRONTEND: FRONTEND
+    TG_BOT: TgBot
 
     model_config = SettingsConfigDict(env_file="./app/.env", env_nested_delimiter="__")
 

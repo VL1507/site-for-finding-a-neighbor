@@ -74,3 +74,9 @@ jwt_manager = JWTManager(
     public_key_path=settings.JWT.PUBLIC_KEY_PATH,
     minutes=settings.JWT.LIFE_TIME_MINUTES,
 )
+
+tg_bot_jwt_manager = JWTManager(
+    private_key_path=settings.TG_BOT.PRIVATE_KEY_PATH,
+    public_key_path=settings.TG_BOT.PUBLIC_KEY_PATH,
+    minutes=settings.TG_BOT.LIFE_TIME_MINUTES,
+)
