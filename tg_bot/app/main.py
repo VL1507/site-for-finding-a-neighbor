@@ -1,21 +1,25 @@
-import logging
 import asyncio
 
 from aiogram import Bot, Dispatcher
 from aiogram.enums import ParseMode
 from aiogram.client.default import DefaultBotProperties
 
-import config
+from config import settings
+
 from handlers.user_handlers import router as user_router
-from utils import custom_logger
+from utils.custom_logger import logging_basicConfig, setup_logger
 
 
 async def main():
+    logger = setup_logger(__name__)
+    logger.info("start bot")
+
     bot = Bot(
-        token=config.TG_BOT_TOKEN,
+        token=settings.TG_BOT.TOKEN,
         default=DefaultBotProperties(parse_mode=ParseMode.HTML),
     )
-    await bot.delete_webhook(drop_pending_updates=config.DELETE_WEBHOOK)
+
+    await bot.delete_webhook(drop_pending_updates=settings.TG_BOT.DELETE_WEBHOOK)
 
     dp = Dispatcher()
 
@@ -25,13 +29,7 @@ async def main():
 
 
 if __name__ == "__main__":
-    logging.basicConfig(
-        level=config.LOGGING_LEVEL,
-        handlers=[custom_logger.Handler()],
-    )
-    # logger = custom_logger.setup_logger(__name__)
-    # logger.critical("test_1")
-
+    logging_basicConfig(level=settings.LOGGING.VALIDATE_LEVEL)
     try:
         asyncio.run(main())
     except KeyboardInterrupt:

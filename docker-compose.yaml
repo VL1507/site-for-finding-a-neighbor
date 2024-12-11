@@ -5,14 +5,8 @@ services:
         command: [ "poetry", "run", "uvicorn", "app.main:app", "--reload", "--proxy-headers", "--host", "0.0.0.0", "--port", "8000" ]
         ports:
             - "8000:8000"
-        # volumes:
-        #     - ./:/backend/
-        # restart: always
-        # env_file:
-        #     - ./app/.env
-        # depends_on:
-        #     - db_service
-
+        depends_on:
+            - tg_bot_service
 
     frontend_service:
         container_name: frontend
@@ -22,6 +16,11 @@ services:
             - 3000:3000
         depends_on:
             - backend_service
+
+    tg_bot_service:
+        ontainer_name: tg_bot
+        build: ./tg_bot/
+        command: [ "poetry", "run", "python", "./app/main.py" ]
     # db_service:
 
     # nginx:

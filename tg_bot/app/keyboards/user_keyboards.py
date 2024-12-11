@@ -1,11 +1,8 @@
 from aiogram.types import (
-    ReplyKeyboardMarkup,
-    KeyboardButton,
     InlineKeyboardMarkup,
     InlineKeyboardButton,
-    WebAppInfo,
 )
-from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
+from config import settings
 
 
 start = InlineKeyboardMarkup(
@@ -24,7 +21,7 @@ def tg_aouh(code):
         inline_keyboard=[
             [
                 InlineKeyboardButton(
-                    text="ссылка", url=f"http://127.0.0.1:8000/tg_aouh/{code}"
+                    text="ссылка", url=f"{settings.FRONTEND.URL}/tg_aouh/{code}"
                 ),
             ],
         ]
